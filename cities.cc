@@ -29,10 +29,10 @@ double Cities::total_path_distance(const permutation_t& ordering) const {
   int len = ordering.size();
   coord_t firstcoords = map_[ordering[0]];
   coord_t prevcoords;
+  coord_t coords;
   double dist;  // sum of distance
 
   for (int i=1; i<=len; i++) {
-    coord_t coords;
     if (i == len) {  // if it's the last iteration
       coords = firstcoords;  // find returning distance to the first city
     }

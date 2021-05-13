@@ -31,6 +31,15 @@ Uh oh! You waited too long to sell last term's textbooks back to the Reed bookst
 4. *compute_next_generation()* : Pick two parents at random, potentially mutate based on population object's mutation rate, and recombine. Add both children to a new generation population, repeat for half the population size number of iterations, and when done, replace the object's population with the new generation population.
 3. *tsp.cc ga_search()* : Create a random population of permutations (a Deme object), with a given population size and mutation rate. Then, repeatedly evolve for higher fitness (ie lower distance), comparing the distances of the best permutation in each generation of the population on each iteration.
 
+**HW 11 : Part 3**
+
+*ClimbChromosome* : Override mutation operator with local hill climbing.
+1. *mutate()* override : Select the fittest order out of: the original order, a random index *i* swapped with *i-1*, or *i* swapped with *i+1*.
+2. *clone()* override :
+
+*TournamentDeme* : Override selection operator with tournament selection.
+1. *???* override:
+
 **Authors**
 
 Alan Jessup, certified hermit. [Github](https://github.com/alwritescode).

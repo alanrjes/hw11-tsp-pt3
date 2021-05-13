@@ -1,6 +1,6 @@
 #pragma once
 
-#include "chromosome.hh"
+#include "climb_chromosome.hh"
 #include "cities.hh"
 
 #include <random>
@@ -30,10 +30,7 @@ protected:
   // Randomly select a chromosome in the population based on fitness and return a pointer to that chromosome.
   virtual Chromosome* select_parent();
 
-  // Helper function for compute_next_generation()
-  Chromosome* mutate_parent();
-
-  std::vector<Chromosome*> pop_;  // Population of Chromosomes
+  std::vector<Chromosome*> pop_;  // Population of chromosomes
   double mut_rate_;  // Mutation rate (fraction in range [0,1])
 
   std::default_random_engine generator_; // A random number generator for the various methods

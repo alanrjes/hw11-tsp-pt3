@@ -1,5 +1,5 @@
 #include <vector>
-#include "chromosome.hh"
+#include "climb_chromosome.hh"
 #include "deme.hh"
 
 // Generate a Deme of the specified size with all-random chromosomes.
@@ -62,20 +62,22 @@ Chromosome* Deme::select_parent() {
 void Deme::compute_next_generation() {
   std::vector<Chromosome*> newpop;
   for (int i=0; i<(pop_.size()/2); i++) {
-    Chromosome* p1 = this -> mutate_parent();
-    Chromosome* p2 = this -> mutate_parent();
+    // first parent
+    ClimbChromosome* p1 = this -> select_parent();
+    int mutroll = rand() % 100;
+    if (mutroll < mut_rate_*100) {
+      p1 -> mutate();
+    }
+    // second parent
+    ClimbChromosome* p2 = this -> select_parent();
+    mutroll = rand() % 100;
+    if (mutroll < mut_rate_*100) {
+      p2 -> mutate();
+    }
+    // combine
     std::pair<Chromosome*, Chromosome*> children = p1 -> recombine(p2);
     newpop.push_back(children.first);
     newpop.push_back(children.second);
   }
   pop_ = newpop;
-}
-
-Chromosome* Deme::mutate_parent() {
-  Chromosome* parent = this -> select_parent();
-  int mutroll = rand() % 100;
-  if (mutroll < mut_rate_*100) {
-    parent -> mutate();
-  }
-  return parent;
 }
